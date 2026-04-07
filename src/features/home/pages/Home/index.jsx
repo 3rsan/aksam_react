@@ -1,5 +1,5 @@
 function index() {
-  return <div>Anasayyfa</div>;
+  return <div>Anasayfa</div>;
 }
 
 export default index;

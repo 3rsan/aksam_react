@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaXmark, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa6';
-import { useSidebar } from '../../../../app/providers/useSidebar';
-import AksamLogo from '../../../../assets/logo.svg';
+import { useSidebar } from '@app/providers/useSidebar';
+import AksamLogo from '@assets/logo.svg';
 import './styles.scss';
 
 export default function OffcanvasSidebar() {

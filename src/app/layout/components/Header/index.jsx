@@ -10,8 +10,8 @@ import {
   FaPlus,
 } from 'react-icons/fa';
 import './styles.scss';
-import AksamLogo from '../../../../assets/logo.svg';
-import { useSidebar } from '../../../providers/useSidebar';
+import AksamLogo from '@assets/logo.svg';
+import { useSidebar } from '@app/providers/useSidebar';
 
 // useAuth hook'unu kendi auth yapına göre değiştir
 // import { useAuth } from "@/hooks/useAuth";
