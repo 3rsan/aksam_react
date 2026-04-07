@@ -1,0 +1,255 @@
+// ─────────────────────────────────────────────
+//  Header.scss
+//  Kendi token'larını .header scope'unda tanımlar.
+//  index.css'e (Vite default) sıfır bağımlılık.
+//  Dark mode: prefers-color-scheme ile otomatik.
+// ─────────────────────────────────────────────
+
+// ── SCSS sabitleri (boyut / süre) ─────────────
+$accent: #e63312; // Aksa kırmızısı
+$accent-dark: #c42a0e; // hover koyulaştırma
+$transition: 200ms ease;
+
+// ── CSS token'ları — .header scope'unda ───────
+// Böylece global :root token'larını (--bg, --border
+// vb.) geçersiz kılmaz; tamamen izole çalışır.
+.header {
+  --h-bg-top: #0a0a0a;
+  --h-bg-nav: #ffffff;
+  --h-border: #e5e4e7;
+  --h-text-nav: #0a0a0a;
+  --h-text-top: rgba(255 255 255 / 0.6);
+  --h-text-top-hover: #ffffff;
+  --h-divider: rgba(255 255 255 / 0.2);
+  --h-hover-bg: #f5f5f5;
+  --h-hamburger: #0a0a0a;
+
+  @media (prefers-color-scheme: dark) {
+    --h-bg-nav: #1a1b22;
+    --h-border: #2e303a;
+    --h-text-nav: #f3f4f6;
+    --h-hover-bg: #25262f;
+    --h-hamburger: #f3f4f6;
+    // topbar (#0a0a0a) zaten siyah — dark'ta değişmez
+  }
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  // #root'un border-inline'ı içinde kalır,
+  // ayrıca full-bleed hack gerekmez.
+}
+
+// ── Topbar ────────────────────────────────────
+.header__topbar {
+  background-color: var(--h-bg-top);
+  font-size: 0.8125rem; // 13px
+  line-height: 1;
+
+  &-slogan {
+    color: var(--h-text-top);
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  &-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--h-text-top);
+    text-decoration: none;
+    transition: color $transition;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+
+    svg {
+      // react-icons
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: var(--h-text-top-hover);
+    }
+  }
+
+  &-divider {
+    color: var(--h-divider);
+    user-select: none;
+  }
+}
+
+// ── Ana Navbar ────────────────────────────────
+.header__navbar {
+  background-color: var(--h-bg-nav);
+  border-bottom: 8px solid #0a0a0a;
+}
+
+// ── Logo ──────────────────────────────────────
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  img {
+    height: 36px;
+    width: auto;
+
+    @media (min-width: 1024px) {
+      height: 44px;
+    }
+  }
+}
+
+// ── Desktop Nav linkleri ──────────────────────
+.header__nav-link {
+  position: relative;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--h-text-nav);
+  text-decoration: none;
+  padding-bottom: 2px;
+  transition: color $transition;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $accent;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms ease;
+  }
+
+  &:hover,
+  &.active {
+    color: $accent;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// ── CTA Butonu ────────────────────────────────
+.header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  height: 38px;
+  border-radius: 4px;
+  background-color: $accent;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color $transition,
+    transform $transition;
+
+  &:hover {
+    background-color: $accent-dark;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.header__cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(255 255 255 / 0.25);
+  flex-shrink: 0;
+
+  svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// ── Hamburger ────────────────────────────────
+.header__hamburger {
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background-color $transition;
+
+  &:hover {
+    background-color: var(--h-hover-bg);
+  }
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--h-hamburger);
+    border-radius: 2px;
+    transition:
+      transform 250ms ease,
+      opacity 250ms ease;
+  }
+}
+
+// ── Mobil Menü ───────────────────────────────
+.header__mobile-menu {
+  background-color: var(--h-bg-nav);
+  overflow: hidden;
+  max-height: 0;
+  border-bottom: 0px solid var(--h-border);
+  transition:
+    max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-bottom-width 300ms ease;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  &--open {
+    max-height: 420px;
+    border-bottom-width: 1px;
+  }
+}
+
+.header__mobile-link {
+  display: block;
+  padding: 14px 20px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--h-text-nav);
+  text-decoration: none;
+  border-bottom: 1px solid var(--h-border);
+  text-align: left;
+  transition:
+    background-color $transition,
+    color $transition;
+
+  &:hover {
+    background-color: var(--h-hover-bg);
+    color: $accent;
+  }
+}
+
+.header__mobile-auth {
+  border-top: 2px solid var(--h-border);
+}
