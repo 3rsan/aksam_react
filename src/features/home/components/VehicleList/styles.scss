@@ -1,0 +1,171 @@
+// ─────────────────────────────────────────────
+//  VehicleList/styles.scss
+// ─────────────────────────────────────────────
+
+$accent: #cc0000;
+$transition: 200ms ease;
+
+.vl {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+// ── Üst bar ───────────────────────────────────
+.vl__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0a0a0a;
+  margin-bottom: 16px;
+}
+
+.vl__count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+
+  strong {
+    color: $accent;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+}
+
+.vl__count-skeleton {
+  display: inline-block;
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: vl-shimmer 1.4s infinite;
+}
+
+// ── Liste ─────────────────────────────────────
+.vl__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── Shimmer animasyonu ─────────────────────────
+@keyframes vl-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ── Skeleton kart ─────────────────────────────
+.vl-skeleton {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 140px;
+  }
+
+  &__thumb {
+    flex-shrink: 0;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vl-shimmer 1.4s infinite;
+
+    @media (min-width: 768px) {
+      width: 240px;
+      aspect-ratio: unset;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__line {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vl-shimmer 1.4s infinite;
+
+    &--title {
+      height: 18px;
+      width: 75%;
+    }
+    &--meta {
+      height: 12px;
+      width: 45%;
+    }
+  }
+
+  &__badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  &__badge {
+    height: 24px;
+    width: 70px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vl-shimmer 1.4s infinite;
+  }
+
+  &__price-col {
+    width: 150px;
+    border-left: 1px solid #e8e8e8;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vl-shimmer 1.4s infinite;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+// ── Boş durum ─────────────────────────────────
+.vl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 60px 20px;
+  border: 1px dashed #e8e8e8;
+  border-radius: 6px;
+  text-align: center;
+
+  &__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0a0a0a;
+    margin: 0;
+  }
+
+  &__sub {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+}
