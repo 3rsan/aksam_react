@@ -1,39 +1,27 @@
 import { FaList, FaTableCells } from 'react-icons/fa6';
+import { SORT_OPTIONS } from '../../constants/sortOptions';
 import './styles.scss';
 
-const SIRALAMA_SECENEKLERI = [
-  { value: '', label: 'Gelişmiş Sıralama' },
-  { value: 'fiyatyuk', label: 'Fiyata Göre Yüksek' },
-  { value: 'fiyatdus', label: 'Fiyata Göre Düşük' },
-  { value: 'enson', label: 'En Son Eklenen' },
-];
-
-// viewMode: 'list' | 'grid'
 export default function VehicleListToolbar({
-  toplamSonuc = 0,
-  sayfaBaslangic = 1,
-  sayfaBitis = 15,
-  siralamaValue = '',
+  totalCount = 0,
+  pageStart = 1,
+  pageEnd = 15,
+  sortValue = '',
   viewMode = 'list',
-  onSiralama, // (value: string) => void
+  onSort, // (value: string) => void
   onViewMode, // ('list' | 'grid') => void
 }) {
-  function handleSiralama(e) {
-    onSiralama?.(e.target.value);
-  }
-
   return (
     <div className="vlt">
-      {/* ── Sol: sıralama + görünüm ── */}
       <div className="vlt__left">
-        <span className="vlt__sort-label">Sırala:</span>
+        <span className="vlt__sort-label">Sort:</span>
 
         <select
           className="vlt__select"
-          value={siralamaValue}
-          onChange={handleSiralama}
+          value={sortValue}
+          onChange={(e) => onSort?.(e.target.value)}
         >
-          {SIRALAMA_SECENEKLERI.map((opt) => (
+          {SORT_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
@@ -45,7 +33,7 @@ export default function VehicleListToolbar({
             type="button"
             className={`vlt__view-btn ${viewMode === 'list' ? 'vlt__view-btn--active' : ''}`}
             onClick={() => onViewMode?.('list')}
-            title="Liste görünümü"
+            title="List view"
           >
             <FaList size={13} />
           </button>
@@ -53,19 +41,18 @@ export default function VehicleListToolbar({
             type="button"
             className={`vlt__view-btn ${viewMode === 'grid' ? 'vlt__view-btn--active' : ''}`}
             onClick={() => onViewMode?.('grid')}
-            title="Grid görünümü"
+            title="Grid view"
           >
             <FaTableCells size={13} />
           </button>
         </div>
       </div>
 
-      {/* ── Sağ: sonuç sayısı ── */}
       <p className="vlt__result-text">
         <strong>
-          {sayfaBaslangic} – {sayfaBitis}
+          {pageStart} – {pageEnd}
         </strong>{' '}
-        arası, toplam <strong>{toplamSonuc}</strong> sonuç
+        of <strong>{totalCount}</strong> results
       </p>
     </div>
   );
