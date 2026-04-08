@@ -11,46 +11,30 @@ $transition: 200ms ease;
   width: 100%;
 }
 
-// ── Üst bar ───────────────────────────────────
-.vl__topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #0a0a0a;
-  margin-bottom: 16px;
-}
-
-.vl__count {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0;
-
-  strong {
-    color: $accent;
-    font-weight: 700;
-    font-size: 1rem;
-  }
-}
-
-.vl__count-skeleton {
-  display: inline-block;
-  width: 120px;
-  height: 16px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: vl-shimmer 1.4s infinite;
-}
-
-// ── Liste ─────────────────────────────────────
+// ── Liste wrapper ─────────────────────────────
 .vl__list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  // Grid modu — 2 kolon
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+
+    // Boş durum grid'de full genişlik
+    .vl-empty {
+      grid-column: 1 / -1;
+    }
+  }
 }
 
-// ── Shimmer animasyonu ─────────────────────────
+// ── Skeleton ──────────────────────────────────
 @keyframes vl-shimmer {
   0% {
     background-position: 200% 0;
@@ -60,7 +44,6 @@ $transition: 200ms ease;
   }
 }
 
-// ── Skeleton kart ─────────────────────────────
 .vl-skeleton {
   display: flex;
   flex-direction: column;
@@ -69,9 +52,21 @@ $transition: 200ms ease;
   overflow: hidden;
   background: #fff;
 
+  // List modu
   @media (min-width: 768px) {
     flex-direction: row;
     height: 140px;
+  }
+
+  // Grid modu override
+  &--grid {
+    flex-direction: column !important;
+    height: auto !important;
+
+    .vl-skeleton__thumb {
+      width: 100% !important;
+      aspect-ratio: 16 / 10;
+    }
   }
 
   &__thumb {

@@ -2,7 +2,6 @@ import {
   FaLocationDot,
   FaCar,
   FaCalendar,
-  FaGauge,
   FaFileLines,
   FaCarBurst,
 } from 'react-icons/fa6';
@@ -11,7 +10,6 @@ import { BsFuelPumpFill } from 'react-icons/bs';
 import { MdSpeed } from 'react-icons/md';
 import './styles.scss';
 
-// ── İkon eşlemesi ──────────────────────────────────────────
 const FEATURE_ICONS = {
   marka: <FaCar size={12} />,
   yil: <FaCalendar size={12} />,
@@ -22,7 +20,6 @@ const FEATURE_ICONS = {
   hasar: <FaCarBurst size={12} />,
 };
 
-// ── Alt bileşen: özellik etiketi ──────────────────────────
 function FeatureBadge({ type = 'marka', label }) {
   return (
     <div className="vc-badge">
@@ -34,7 +31,7 @@ function FeatureBadge({ type = 'marka', label }) {
   );
 }
 
-// ── Ana bileşen ───────────────────────────────────────────
+// viewMode: 'list' | 'grid'
 export default function VehicleCard({
   ihaleNo = '302646',
   baslik = '2024 DAILY VAN 35 S 16 A 8 VAN 4100 H2 E6E GSR24 / SOĞUTUCU HARİÇ',
@@ -49,9 +46,12 @@ export default function VehicleCard({
   yakit = 'DİZEL',
   belge = 'ÇEKME BELGELİ',
   hasarDurumu = 'ÇARPMA-ÇARPIŞMA',
+  viewMode = 'list',
 }) {
+  const isGrid = viewMode === 'grid';
+
   return (
-    <article className="vc">
+    <article className={`vc ${isGrid ? 'vc--grid' : 'vc--list'}`}>
       {/* ── Görsel ── */}
       <a href={detayUrl} className="vc__thumb">
         <img src={gorsel} alt={baslik} className="vc__img" />
@@ -68,9 +68,11 @@ export default function VehicleCard({
             <FaLocationDot size={11} />
             {konum}
           </span>
-          <span className="vc__meta-item vc__meta-item--ihale">
-            <strong>İhale No:</strong>&nbsp;{ihaleNo}
-          </span>
+          {!isGrid && (
+            <span className="vc__meta-item vc__meta-item--ihale">
+              <strong>İhale No:</strong>&nbsp;{ihaleNo}
+            </span>
+          )}
         </div>
 
         <div className="vc__divider" />
@@ -84,15 +86,27 @@ export default function VehicleCard({
           {belge && <FeatureBadge type="belge" label={belge} />}
           {hasarDurumu && <FeatureBadge type="hasar" label={hasarDurumu} />}
         </div>
+
+        {/* Grid: fiyat + buton body içinde altta */}
+        {isGrid && (
+          <div className="vc__grid-footer">
+            <span className="vc__price">{fiyat}</span>
+            <a href={detayUrl} className="vc__btn">
+              İncele
+            </a>
+          </div>
+        )}
       </div>
 
-      {/* ── Fiyat ── */}
-      <div className="vc__price-col">
-        <span className="vc__price">{fiyat}</span>
-        <a href={detayUrl} className="vc__btn">
-          İncele
-        </a>
-      </div>
+      {/* List: fiyat kolonu sağda ayrı */}
+      {!isGrid && (
+        <div className="vc__price-col">
+          <span className="vc__price">{fiyat}</span>
+          <a href={detayUrl} className="vc__btn">
+            İncele
+          </a>
+        </div>
+      )}
     </article>
   );
 }

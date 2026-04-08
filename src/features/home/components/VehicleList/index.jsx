@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import VehicleCard from '../VehicleCard';
 import VehicleListToolbar from '../VehicleListToolbar';
 import './styles.scss';
 
-// ── Mock veri — API'den gelecek ───────────────────────────
 const MOCK_VEHICLES = [
   {
     id: 1,
@@ -91,14 +91,15 @@ const MOCK_VEHICLES = [
   },
 ];
 
-// ── Skeleton kart (yükleme) ───────────────────────────────
-function SkeletonCard() {
+// ── Skeleton ──────────────────────────────────
+function SkeletonCard({ viewMode }) {
   return (
-    <div className="vl-skeleton">
+    <div
+      className={`vl-skeleton ${viewMode === 'grid' ? 'vl-skeleton--grid' : ''}`}
+    >
       <div className="vl-skeleton__thumb" />
       <div className="vl-skeleton__body">
         <div className="vl-skeleton__line vl-skeleton__line--title" />
-        <div className="vl-skeleton__line vl-skeleton__line--meta" />
         <div className="vl-skeleton__line vl-skeleton__line--meta" />
         <div className="vl-skeleton__badges">
           {[1, 2, 3, 4].map((i) => (
@@ -106,12 +107,11 @@ function SkeletonCard() {
           ))}
         </div>
       </div>
-      <div className="vl-skeleton__price-col" />
+      {viewMode === 'list' && <div className="vl-skeleton__price-col" />}
     </div>
   );
 }
 
-// ── Boş durum ─────────────────────────────────────────────
 function EmptyState() {
   return (
     <div className="vl-empty">
@@ -124,59 +124,70 @@ function EmptyState() {
   );
 }
 
-// ── Ana bileşen ───────────────────────────────────────────
+// ── Ana bileşen ───────────────────────────────
 export default function VehicleList({
   vehicles = MOCK_VEHICLES,
   loading = false,
   total = null,
+  sayfaBaslangic = 1,
+  sayfaBitis = 15,
+  onSiralama,
 }) {
+  const [viewMode, setViewMode] = useState('list');
+  const [siralama, setSiralama] = useState('');
+
   const count = total ?? vehicles.length;
 
-  return (
-    <>
-      <VehicleListToolbar />
-      <section className="vl">
-        {/* Üst bar */}
-        <div className="vl__topbar">
-          <p className="vl__count">
-            {loading ? (
-              <span className="vl__count-skeleton" />
-            ) : (
-              <>
-                <strong>{count}</strong> araç listeleniyor
-              </>
-            )}
-          </p>
-        </div>
+  function handleSiralama(val) {
+    setSiralama(val);
+    onSiralama?.(val);
+  }
 
-        {/* Liste */}
-        <div className="vl__list">
-          {loading ? (
-            Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
-          ) : vehicles.length === 0 ? (
-            <EmptyState />
-          ) : (
-            vehicles.map((vehicle) => (
-              <VehicleCard
-                key={vehicle.id}
-                ihaleNo={vehicle.ihaleNo}
-                baslik={vehicle.baslik}
-                konum={vehicle.konum}
-                fiyat={vehicle.fiyat}
-                detayUrl={vehicle.detayUrl}
-                gorsel={vehicle.gorsel}
-                marka={vehicle.marka}
-                yil={vehicle.yil}
-                km={vehicle.km}
-                vites={vehicle.vites}
-                yakit={vehicle.yakit}
-                belge={vehicle.belge}
-                hasarDurumu={vehicle.hasarDurumu}
-              />
-            ))
-          )}
-        </div>
-      </section>
-    </>
+  return (
+    <section className="vl">
+      {/* Toolbar */}
+      <VehicleListToolbar
+        toplamSonuc={count}
+        sayfaBaslangic={sayfaBaslangic}
+        sayfaBitis={Math.min(sayfaBitis, count)}
+        siralamaValue={siralama}
+        viewMode={viewMode}
+        onSiralama={handleSiralama}
+        onViewMode={setViewMode}
+      />
+
+      {/* Liste / Grid */}
+      <div
+        className={`vl__list ${viewMode === 'grid' ? 'vl__list--grid' : ''}`}
+      >
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <SkeletonCard key={i} viewMode={viewMode} />
+          ))
+        ) : vehicles.length === 0 ? (
+          <EmptyState />
+        ) : (
+          vehicles.map((vehicle) => (
+            <VehicleCard
+              key={vehicle.id}
+              viewMode={viewMode}
+              ihaleNo={vehicle.ihaleNo}
+              baslik={vehicle.baslik}
+              konum={vehicle.konum}
+              fiyat={vehicle.fiyat}
+              detayUrl={vehicle.detayUrl}
+              gorsel={vehicle.gorsel}
+              marka={vehicle.marka}
+              yil={vehicle.yil}
+              km={vehicle.km}
+              vites={vehicle.vites}
+              yakit={vehicle.yakit}
+              belge={vehicle.belge}
+              hasarDurumu={vehicle.hasarDurumu}
+            />
+          ))
+        )}
+      </div>
+    </section>
   );
 }
