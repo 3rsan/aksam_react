@@ -144,27 +144,39 @@ $transition: 200ms ease;
 .header__cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 18px;
+  gap: 0;
+  padding: 0;
   height: 38px;
   border-radius: 4px;
-  background-color: $accent;
-  color: #fff;
+  background-color: #ffffff;
+  border: 1.5px solid #e8e8e8;
+  color: #0a0a0a;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+  overflow: hidden;
   transition:
     background-color $transition,
-    transform $transition;
+    border-color $transition,
+    color $transition;
 
   &:hover {
-    background-color: $accent-dark;
-    transform: translateY(-1px);
+    background-color: $accent;
+    border-color: $accent;
+    color: #ffffff;
+
+    .header__cta-icon {
+      background-color: #0a0a0a;
+
+      svg {
+        transform: rotate(90deg);
+      }
+    }
   }
 
   &:active {
-    transform: translateY(0);
+    opacity: 0.9;
   }
 }
 
@@ -172,16 +184,26 @@ $transition: 200ms ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: rgba(255 255 255 / 0.25);
+  width: 38px; // buton yüksekliğiyle eşit → kare/daire alanı
+  height: 38px;
+  background-color: $accent;
   flex-shrink: 0;
+  transition: background-color $transition;
 
   svg {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
+    color: #ffffff;
+    transition: transform 300ms ease;
   }
+}
+
+.header__cta span + * {
+  padding: 0 16px;
+}
+
+.header__cta-label {
+  padding: 0 16px;
 }
 
 // ── Hamburger ────────────────────────────────

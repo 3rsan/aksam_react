@@ -124,16 +124,16 @@ export default function Header() {
               {/* Araç Talep Et CTA */}
               <Link
                 to={isAuthenticated ? '#' : '/kayit-ol'}
-                className="header__cta hidden sm:flex items-center gap-2"
+                className="header__cta hidden sm:flex items-center"
                 {...(isAuthenticated && {
                   'data-bs-toggle': 'modal',
                   'data-bs-target': '#RequestAVehicle',
                 })}
               >
                 <span className="header__cta-icon">
-                  <FaPlus size={10} />
+                  <FaPlus size={11} />
                 </span>
-                Araç Talep Edin
+                <span className="header__cta-label">Araç Talep Edin</span>
               </Link>
 
               {/* Sidebar toggle (desktop) */}

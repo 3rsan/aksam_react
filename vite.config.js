@@ -11,8 +11,8 @@ export default defineConfig({
     alias: {
       '@app': path.resolve(__dirname, 'src/app'),
       '@features': path.resolve(__dirname, 'src/features'),
-      '@assets': path.resolve(__dirname, 'src/assets'), // ← ekle
-      '@shared': path.resolve(__dirname, 'src/shared'), // ← ekle
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@shared': path.resolve(__dirname, 'src/shared'),
     },
   },
 });
