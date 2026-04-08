@@ -1,4 +1,5 @@
 import VehicleCard from '../VehicleCard';
+import VehicleListToolbar from '../VehicleListToolbar';
 import './styles.scss';
 
 // ── Mock veri — API'den gelecek ───────────────────────────
@@ -132,47 +133,50 @@ export default function VehicleList({
   const count = total ?? vehicles.length;
 
   return (
-    <section className="vl">
-      {/* Üst bar */}
-      <div className="vl__topbar">
-        <p className="vl__count">
-          {loading ? (
-            <span className="vl__count-skeleton" />
-          ) : (
-            <>
-              <strong>{count}</strong> araç listeleniyor
-            </>
-          )}
-        </p>
-      </div>
+    <>
+      <VehicleListToolbar />
+      <section className="vl">
+        {/* Üst bar */}
+        <div className="vl__topbar">
+          <p className="vl__count">
+            {loading ? (
+              <span className="vl__count-skeleton" />
+            ) : (
+              <>
+                <strong>{count}</strong> araç listeleniyor
+              </>
+            )}
+          </p>
+        </div>
 
-      {/* Liste */}
-      <div className="vl__list">
-        {loading ? (
-          Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
-        ) : vehicles.length === 0 ? (
-          <EmptyState />
-        ) : (
-          vehicles.map((vehicle) => (
-            <VehicleCard
-              key={vehicle.id}
-              ihaleNo={vehicle.ihaleNo}
-              baslik={vehicle.baslik}
-              konum={vehicle.konum}
-              fiyat={vehicle.fiyat}
-              detayUrl={vehicle.detayUrl}
-              gorsel={vehicle.gorsel}
-              marka={vehicle.marka}
-              yil={vehicle.yil}
-              km={vehicle.km}
-              vites={vehicle.vites}
-              yakit={vehicle.yakit}
-              belge={vehicle.belge}
-              hasarDurumu={vehicle.hasarDurumu}
-            />
-          ))
-        )}
-      </div>
-    </section>
+        {/* Liste */}
+        <div className="vl__list">
+          {loading ? (
+            Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
+          ) : vehicles.length === 0 ? (
+            <EmptyState />
+          ) : (
+            vehicles.map((vehicle) => (
+              <VehicleCard
+                key={vehicle.id}
+                ihaleNo={vehicle.ihaleNo}
+                baslik={vehicle.baslik}
+                konum={vehicle.konum}
+                fiyat={vehicle.fiyat}
+                detayUrl={vehicle.detayUrl}
+                gorsel={vehicle.gorsel}
+                marka={vehicle.marka}
+                yil={vehicle.yil}
+                km={vehicle.km}
+                vites={vehicle.vites}
+                yakit={vehicle.yakit}
+                belge={vehicle.belge}
+                hasarDurumu={vehicle.hasarDurumu}
+              />
+            ))
+          )}
+        </div>
+      </section>
+    </>
   );
 }

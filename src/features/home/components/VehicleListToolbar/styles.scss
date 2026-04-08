@@ -1,0 +1,146 @@
+// ─────────────────────────────────────────────
+//  VehicleListToolbar/styles.scss
+// ─────────────────────────────────────────────
+
+$accent: #e63312;
+$accent-dark: #c42a0e;
+$transition: 200ms ease;
+$radius: 4px;
+
+.vlt {
+  --vlt-bg: #ffffff;
+  --vlt-border: #e8e8e8;
+  --vlt-text: #0a0a0a;
+  --vlt-muted: #6b7280;
+  --vlt-hover: #f5f5f5;
+
+  @media (prefers-color-scheme: dark) {
+    --vlt-bg: #1a1b22;
+    --vlt-border: #2e303a;
+    --vlt-text: #f3f4f6;
+    --vlt-muted: #9ca3af;
+    --vlt-hover: #25262f;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--vlt-bg);
+  border: 1px solid var(--vlt-border);
+  border-radius: $radius;
+  margin-bottom: 14px;
+
+  @media (max-width: 640px) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+// ── Sol grup ──────────────────────────────────
+.vlt__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vlt__sort-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--vlt-text);
+  white-space: nowrap;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+// ── Select ────────────────────────────────────
+.vlt__select {
+  height: 32px;
+  padding: 0 28px 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--vlt-text);
+  background-color: var(--vlt-hover);
+  border: 1px solid var(--vlt-border);
+  border-radius: $radius;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color $transition;
+
+  &:focus {
+    border-color: $accent;
+  }
+}
+
+// ── Liste / Grid butonları ────────────────────
+.vlt__view-btns {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--vlt-border);
+  border-radius: $radius;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.vlt__view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--vlt-muted);
+  transition:
+    background-color $transition,
+    color $transition;
+
+  & + & {
+    border-left: 1px solid var(--vlt-border);
+  }
+
+  &:hover {
+    background-color: var(--vlt-hover);
+    color: var(--vlt-text);
+  }
+
+  &--active {
+    background-color: $accent;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $accent-dark;
+      color: #ffffff;
+    }
+  }
+}
+
+// ── Sonuç metni ───────────────────────────────
+.vlt__result-text {
+  font-size: 0.8125rem;
+  color: var(--vlt-muted);
+  margin: 0;
+  white-space: nowrap;
+
+  strong {
+    color: var(--vlt-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    text-align: right;
+  }
+}

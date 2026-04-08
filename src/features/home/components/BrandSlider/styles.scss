@@ -1,0 +1,175 @@
+// ─────────────────────────────────────────────
+//  VehicleBrandSlider/styles.scss
+// ─────────────────────────────────────────────
+
+$accent: #e63312;
+$transition: 200ms ease;
+
+// ── Ana section ───────────────────────────────
+.vbs {
+  --vbs-bg: #ffffff;
+  --vbs-border: #e8e8e8;
+  --vbs-text: #0a0a0a;
+  --vbs-muted: #6b7280;
+  --vbs-item-hover: #f5f5f5;
+
+  @media (prefers-color-scheme: dark) {
+    --vbs-bg: #1a1b22;
+    --vbs-border: #2e303a;
+    --vbs-text: #f3f4f6;
+    --vbs-muted: #9ca3af;
+    --vbs-item-hover: #25262f;
+  }
+
+  background-color: var(--vbs-bg);
+  border-top: 1px solid var(--vbs-border);
+  border-bottom: 1px solid var(--vbs-border);
+  overflow: hidden;
+
+  // Swiper override — tam genişlik
+  .swiper {
+    width: 100%;
+    // Kenar solma efekti
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+  }
+
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+}
+
+// ── Slide ─────────────────────────────────────
+.vbs__slide {
+  width: auto !important; // slidesPerView="auto" için zorunlu
+}
+
+// ── Tek marka butonu ──────────────────────────
+.vbs__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 110px;
+  padding: 18px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-right: 1px solid var(--vbs-border);
+  transition: background-color $transition;
+
+  &:hover {
+    background-color: var(--vbs-item-hover);
+
+    .vbs__logo {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    .vbs__label {
+      color: $accent;
+    }
+  }
+
+  &:active {
+    background-color: darken(#f5f5f5, 4%);
+  }
+}
+
+// ── Logo wrapper ──────────────────────────────
+.vbs__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.vbs__logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition:
+    filter $transition,
+    opacity $transition,
+    transform 250ms ease;
+}
+
+// ── Marka adı ─────────────────────────────────
+.vbs__label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--vbs-muted);
+  text-transform: uppercase;
+  transition: color $transition;
+  line-height: 1;
+}
+
+// ── Skeleton loading ─────────────────────────
+@keyframes vbs-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.vbs-loading {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  overflow: hidden;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    padding: 18px 12px;
+    border-right: 1px solid #e8e8e8;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &__circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vbs-shimmer 1.4s infinite;
+  }
+
+  &__label {
+    width: 50px;
+    height: 10px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: vbs-shimmer 1.4s infinite;
+  }
+}
