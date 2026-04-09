@@ -1,0 +1,74 @@
+.wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.infoIcon {
+  color: #1d9e75;
+  flex-shrink: 0;
+}
+
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+  flex: 1;
+  justify-content: center;
+
+  &:hover {
+    background: #1ebe5d;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.callBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: #fff;
+  color: #1d9e75;
+  border: 1.5px solid #1d9e75;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.1s;
+  flex: 1;
+  justify-content: center;
+
+  &:hover {
+    background: #1d9e75;
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

@@ -7,6 +7,7 @@ import PrivacyPolicy from '../../features/home/pages/PrivacyPolicy/PrivacyPolicy
 import AboutPage from '../../features/home/pages/About/AboutPage';
 import ContactPage from '../../features/home/pages/Contact/ContactPage';
 import ForgotPassword from '../../features/auth/pages/ForgotPassword/ForgotPassword';
+import ProductDetailPage from '../../features/home/pages/VehicleDetail/ProductDetailPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: 'kurumsal', element: <AboutPage /> },
       { path: 'iletisim', element: <ContactPage /> },
       { path: 'sifremi-unuttum', element: <ForgotPassword /> },
+      { path: 'detay/:id/:slug', element: <ProductDetailPage /> },
     ],
   },
 ]);

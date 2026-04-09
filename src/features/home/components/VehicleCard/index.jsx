@@ -9,6 +9,7 @@ import { GiGearStickPattern } from 'react-icons/gi';
 import { BsFuelPumpFill } from 'react-icons/bs';
 import { MdSpeed } from 'react-icons/md';
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 const FEATURE_ICONS = {
   brand: <FaCar size={12} />,
@@ -53,16 +54,16 @@ export default function VehicleCard({
   return (
     <article className={`vc ${isGrid ? 'vc--grid' : 'vc--list'}`}>
       {/* Thumbnail */}
-      <a href={detailUrl} className="vc__thumb">
+      <Link to={detailUrl} className="vc__thumb">
         <img src={image} alt={title} className="vc__img" />
         {!isGrid && <span className="vc__overlay">View Detail</span>}
-      </a>
+      </Link>
 
       {/* Body */}
       <div className="vc__body">
-        <a href={detailUrl} className="vc__title-link">
+        <Link to={detailUrl} className="vc__title-link">
           <h5 className="vc__title">{title}</h5>
-        </a>
+        </Link>
 
         <div className="vc__meta">
           <span className="vc__meta-item">
@@ -92,9 +93,9 @@ export default function VehicleCard({
         {isGrid && (
           <div className="vc__grid-footer">
             <span className="vc__price">{price}</span>
-            <a href={detailUrl} className="vc__btn">
+            <Link to={detailUrl} className="vc__btn">
               İncele
-            </a>
+            </Link>
           </div>
         )}
       </div>
@@ -103,9 +104,9 @@ export default function VehicleCard({
       {!isGrid && (
         <div className="vc__price-col">
           <span className="vc__price">{price}</span>
-          <a href={detailUrl} className="vc__btn">
+          <Link to={detailUrl} className="vc__btn">
             İncele
-          </a>
+          </Link>
         </div>
       )}
     </article>

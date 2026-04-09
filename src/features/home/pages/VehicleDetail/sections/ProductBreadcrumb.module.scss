@@ -1,0 +1,68 @@
+.breadcrumb {
+  position: relative;
+  overflow: hidden;
+  background-color: #0f172a;
+  background-image: url('https://aksamoto.com.tr/assets/img/shapes/texture-bg.png');
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 0 3rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.tirePrintLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.tirePrintRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 2;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.breadcrumbList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.link {
+  color: #1d9e75;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.875rem;
+}
