@@ -1,5 +1,6 @@
 import styles from './AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   return (
@@ -43,12 +44,9 @@ const LoginForm = () => {
                 <label>
                   <input type="checkbox" /> Beni Hatırla
                 </label>
-                <a
-                  href="https://aksamoto.com.tr/sifremi-unuttum"
-                  className={styles.forgotPass}
-                >
+                <Link to="/sifremi-unuttum" className={styles.forgotPass}>
                   Şifremi Unuttum
-                </a>
+                </Link>
               </div>
 
               <div className="col-12">

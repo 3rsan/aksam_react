@@ -24,47 +24,6 @@
     margin-bottom: 1.5rem;
   }
 
-  .inputField {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-
-    &.mt4 {
-      margin-top: 1.25rem;
-    }
-
-    label {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #374151;
-    }
-
-    input {
-      padding: 10px 14px;
-      font-size: 0.9rem;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      background: #f9fafb;
-      color: #111827;
-      transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
-      outline: none;
-      width: 100%;
-      box-sizing: border-box;
-
-      &:focus {
-        border-color: #1d9e75;
-        box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
-        background: #fff;
-      }
-
-      &::placeholder {
-        color: #9ca3af;
-      }
-    }
-  }
-
   // ─── Register grid ────────────────────────────────────────
 
   .formGrid {
@@ -109,38 +68,79 @@
       }
     }
   }
+}
 
-  // ─── Submit button (shared) ───────────────────────────────
+// ─── Shared (standalone kullanılabilir) ───────────────────
 
-  .submitBtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.mt4 {
     margin-top: 1.25rem;
-    padding: 11px 24px;
-    background: #1d9e75;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
+  }
+
+  label {
+    font-size: 0.85rem;
     font-weight: 500;
-    cursor: pointer;
+    color: #374151;
+  }
+
+  input {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    color: #111827;
     transition:
-      background 0.2s,
-      transform 0.1s;
+      border-color 0.2s,
+      box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
 
-    &:hover {
-      background: #0f6e56;
+    &:focus {
+      border-color: #1d9e75;
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+      background: #fff;
     }
 
-    &:active {
-      transform: scale(0.98);
-    }
-
-    .icon {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
+    &::placeholder {
+      color: #9ca3af;
     }
   }
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.25rem;
+  padding: 11px 24px;
+  background: #1d9e75;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+
+  &:hover {
+    background: #0f6e56;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
 }
