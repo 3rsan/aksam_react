@@ -5,6 +5,7 @@ import LoginRegister from '../../features/auth/pages/LoginRegister';
 import CookiePolicy from '../../features/home/pages/CookiePolicy/CookiePolicy';
 import PrivacyPolicy from '../../features/home/pages/PrivacyPolicy/PrivacyPolicy';
 import AboutPage from '../../features/home/pages/About/AboutPage';
+import ContactPage from '../../features/home/pages/Contact/ContactPage';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: 'cerez-politikasi', element: <CookiePolicy /> },
       { path: 'aydinlatma-metni', element: <PrivacyPolicy /> },
       { path: 'kurumsal', element: <AboutPage /> },
+      { path: 'iletisim', element: <ContactPage /> },
     ],
   },
 ]);
