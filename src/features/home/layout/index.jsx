@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Header from '../../../app/layout/header';
 import OffcanvasSidebar from '../components/Sidebar';
-import Footer from '../../../app/layout/footer';
+import Footer from '../../../app/layout/footer/Footer';
 
 export default function HomeLayout() {
   return (

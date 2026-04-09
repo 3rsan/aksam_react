@@ -1,4 +1,5 @@
 import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -6,20 +7,16 @@ const Footer = () => {
       <div className={styles.inner}>
         <p className={styles.copy}>
           © Tüm hakları saklıdır.{' '}
-          <a href="https://aksamoto.com.tr" className={styles.brand}>
+          <Link to="/" className={styles.brand}>
             Aksam Otomotiv
-          </a>{' '}
+          </Link>{' '}
           tarafından yapılmıştır.
         </p>
 
         <div className={styles.links}>
-          <a href="https://aksamoto.com.tr/cerez-politikasi">
-            Çerez Politikası
-          </a>
+          <Link to="/cerez-politikasi">Çerez Politikası</Link>
           <span className={styles.divider} />
-          <a href="https://aksamoto.com.tr/aydinlatma-metni">
-            Aydınlatma Metni
-          </a>
+          <Link to="/aydinlatma-metni">Aydınlatma Metni</Link>
         </div>
       </div>
     </footer>

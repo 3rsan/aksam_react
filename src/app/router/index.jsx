@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import HomeLayout from '@features/home/layout';
 import HomePage from '@features/home/pages/Home';
 import LoginRegister from '../../features/auth/pages/LoginRegister';
+import CookiePolicy from '../../features/home/pages/CookiePolicy/CookiePolicy';
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'kayit-ol', element: <LoginRegister /> },
+      { path: 'cerez-politikasi', element: <CookiePolicy /> },
+      { path: 'aydinlatma-metni', element: <LoginRegister /> },
     ],
   },
 ]);
