@@ -4,6 +4,7 @@ import HomePage from '@features/home/pages/Home';
 import LoginRegister from '../../features/auth/pages/LoginRegister';
 import CookiePolicy from '../../features/home/pages/CookiePolicy/CookiePolicy';
 import PrivacyPolicy from '../../features/home/pages/PrivacyPolicy/PrivacyPolicy';
+import AboutPage from '../../features/home/pages/About/AboutPage';
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { path: 'kayit-ol', element: <LoginRegister /> },
       { path: 'cerez-politikasi', element: <CookiePolicy /> },
       { path: 'aydinlatma-metni', element: <PrivacyPolicy /> },
+      { path: 'kurumsal', element: <AboutPage /> },
     ],
   },
 ]);
