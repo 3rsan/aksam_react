@@ -1,0 +1,146 @@
+// ─── Shared Auth Form Styles ───────────────────────────────
+
+.carListingForm {
+  width: 100%;
+
+  .listingInfoBox {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid #eee;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+  }
+
+  .subtitle {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &.mt4 {
+      margin-top: 1.25rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    input {
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #f9fafb;
+      color: #111827;
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: #1d9e75;
+        box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+        background: #fff;
+      }
+
+      &::placeholder {
+        color: #9ca3af;
+      }
+    }
+  }
+
+  // ─── Register grid ────────────────────────────────────────
+
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+
+    .fullWidth {
+      grid-column: 1 / -1;
+    }
+  }
+
+  // ─── Login only ───────────────────────────────────────────
+
+  .cookiesArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+    padding: 0 12px;
+    font-size: 0.85rem;
+    color: #6b7280;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      accent-color: #1d9e75;
+    }
+
+    .forgotPass {
+      color: #1d9e75;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  // ─── Submit button (shared) ───────────────────────────────
+
+  .submitBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.25rem;
+    padding: 11px 24px;
+    background: #1d9e75;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      transform 0.1s;
+
+    &:hover {
+      background: #0f6e56;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+  }
+}
