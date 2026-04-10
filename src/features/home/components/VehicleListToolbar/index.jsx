@@ -4,8 +4,7 @@ import './styles.scss';
 
 export default function VehicleListToolbar({
   totalCount = 0,
-  pageStart = 1,
-  pageEnd = 15,
+  loadedCount = 0,
   sortValue = '',
   viewMode = 'list',
   onSort, // (value: string) => void
@@ -49,10 +48,8 @@ export default function VehicleListToolbar({
       </div>
 
       <p className="vlt__result-text">
-        <strong>
-          {pageStart} – {pageEnd}
-        </strong>{' '}
-        of <strong>{totalCount}</strong> results
+        <strong>{Math.min(loadedCount, totalCount)}</strong> /{' '}
+        <strong>{totalCount}</strong> araç gösteriliyor
       </p>
     </div>
   );

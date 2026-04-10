@@ -41,27 +41,31 @@ export default memo(function VehicleList() {
   const error = useVehicleStore((state) => state.error);
   const sortValue = useVehicleStore((state) => state.sortValue);
   const setSortValue = useVehicleStore((state) => state.setSortValue);
-  const loadMore = useVehicleStore((state) => state.loadMore);
 
   const [viewMode, setViewMode] = useState('list');
   const sentinelRef = useRef(null);
+  const loadingRef = useRef(false);
+
+  useEffect(() => {
+    loadingRef.current = loading;
+  }, [loading]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !loading) {
-          loadMore();
+        if (entries[0].isIntersecting && !loadingRef.current) {
+          useVehicleStore.getState().loadMore();
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin: '100px' },
     );
 
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [loading, loadMore]);
+    const sentinel = sentinelRef.current;
+    if (sentinel) observer.observe(sentinel);
+    return () => {
+      if (sentinel) observer.unobserve(sentinel);
+    };
+  }, []);
 
   if (error) {
     return (
@@ -77,10 +81,7 @@ export default memo(function VehicleList() {
     <section className="vl">
       <VehicleListToolbar
         totalCount={meta?.total ?? 0}
-        pageStart={meta ? (meta.current_page - 1) * meta.per_page + 1 : 0}
-        pageEnd={
-          meta ? Math.min(meta.current_page * meta.per_page, meta.total) : 0
-        }
+        loadedCount={vehicles.length}
         sortValue={sortValue}
         viewMode={viewMode}
         onSort={setSortValue}
@@ -126,8 +127,8 @@ export default memo(function VehicleList() {
         </div>
       )}
 
-      {/* Sentinel — scroll sonu algılayıcı */}
-      {hasMore && !loading && <div ref={sentinelRef} className="vl-sentinel" />}
+      {/* Sentinel — her zaman DOM'da */}
+      <div ref={sentinelRef} className="vl-sentinel" />
 
       {/* Tüm araçlar yüklendi */}
       {!hasMore && !loading && vehicles.length > 0 && (
