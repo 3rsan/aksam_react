@@ -21,17 +21,29 @@ const useVehicleStore = create((set, get) => ({
   error: null,
 
   fetchVehicles: async (params = {}) => {
+    const isLoadMore = params._loadMore;
+    delete params._loadMore;
+
     set({ loading: true, error: null });
     try {
       const data = await getVehicles({ ...get().activeFilters, ...params });
-      set({
-        vehicles: data.data,
+      set((state) => ({
+        vehicles: isLoadMore ? [...state.vehicles, ...data.data] : data.data,
         meta: data.meta,
         loading: false,
-      });
+      }));
     } catch {
       set({ error: 'Araçlar yüklenemedi.', loading: false });
     }
+  },
+
+  loadMore: () => {
+    const { meta } = get();
+    if (meta.current_page >= meta.last_page) return;
+    get().fetchVehicles({
+      page: meta.current_page + 1,
+      _loadMore: true,
+    });
   },
 
   fetchFilters: async () => {

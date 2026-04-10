@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import VehicleCard from '../VehicleCard';
 import VehicleListToolbar from '../VehicleListToolbar';
 import useVehicleStore from '../../../../app/store/useVehicleStore';
@@ -35,16 +35,33 @@ function EmptyState() {
 }
 
 export default memo(function VehicleList() {
-  console.log('VehicleList render');
   const vehicles = useVehicleStore((state) => state.vehicles);
   const meta = useVehicleStore((state) => state.meta);
   const loading = useVehicleStore((state) => state.loading);
   const error = useVehicleStore((state) => state.error);
   const sortValue = useVehicleStore((state) => state.sortValue);
   const setSortValue = useVehicleStore((state) => state.setSortValue);
-  const setPage = useVehicleStore((state) => state.setPage);
+  const loadMore = useVehicleStore((state) => state.loadMore);
 
   const [viewMode, setViewMode] = useState('list');
+  const sentinelRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          loadMore();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [loading, loadMore]);
 
   if (error) {
     return (
@@ -53,6 +70,8 @@ export default memo(function VehicleList() {
       </div>
     );
   }
+
+  const hasMore = meta ? meta.current_page < meta.last_page : false;
 
   return (
     <section className="vl">
@@ -71,55 +90,48 @@ export default memo(function VehicleList() {
       <div
         className={`vl__list ${viewMode === 'grid' ? 'vl__list--grid' : ''}`}
       >
-        {loading ? (
-          Array.from({ length: 4 }).map((_, i) => (
-            <SkeletonCard key={i} viewMode={viewMode} />
-          ))
-        ) : vehicles.length === 0 ? (
+        {vehicles.length === 0 && !loading ? (
           <EmptyState />
         ) : (
-          vehicles.map(
-            (vehicle) => (
-              console.log('detailUrl:', vehicle.detailUrl),
-              (
-                <VehicleCard
-                  key={vehicle.id}
-                  viewMode={viewMode}
-                  auctionNo={vehicle.auctionNo}
-                  title={vehicle.title}
-                  location={vehicle.location}
-                  price={vehicle.price}
-                  detailUrl={vehicle.detailUrl}
-                  image={vehicle.image}
-                  brand={vehicle.brand}
-                  year={vehicle.year}
-                  mileage={vehicle.mileage}
-                  transmission={vehicle.transmission}
-                  fuel={vehicle.fuel}
-                  document={vehicle.document}
-                  damageStatus={vehicle.damageStatus}
-                />
-              )
-            ),
-          )
+          vehicles.map((vehicle) => (
+            <VehicleCard
+              key={vehicle.id}
+              viewMode={viewMode}
+              auctionNo={vehicle.auctionNo}
+              title={vehicle.title}
+              location={vehicle.location}
+              price={vehicle.price}
+              detailUrl={vehicle.detailUrl}
+              image={vehicle.image}
+              brand={vehicle.brand}
+              year={vehicle.year}
+              mileage={vehicle.mileage}
+              transmission={vehicle.transmission}
+              fuel={vehicle.fuel}
+              document={vehicle.document}
+              damageStatus={vehicle.damageStatus}
+            />
+          ))
         )}
       </div>
 
-      {/* Sayfalama */}
-      {meta?.last_page > 1 && (
-        <div className="vl-pagination">
-          {Array.from({ length: meta.last_page }, (_, i) => i + 1).map(
-            (page) => (
-              <button
-                key={page}
-                onClick={() => setPage(page)}
-                className={`vl-pagination__btn ${meta.current_page === page ? 'vl-pagination__btn--active' : ''}`}
-              >
-                {page}
-              </button>
-            ),
-          )}
+      {/* Skeleton — yükleniyor */}
+      {loading && (
+        <div
+          className={`vl__list ${viewMode === 'grid' ? 'vl__list--grid' : ''} mt-4`}
+        >
+          {Array.from({ length: 4 }).map((_, i) => (
+            <SkeletonCard key={i} viewMode={viewMode} />
+          ))}
         </div>
+      )}
+
+      {/* Sentinel — scroll sonu algılayıcı */}
+      {hasMore && !loading && <div ref={sentinelRef} className="vl-sentinel" />}
+
+      {/* Tüm araçlar yüklendi */}
+      {!hasMore && !loading && vehicles.length > 0 && (
+        <p className="vl-end">Tüm araçlar yüklendi</p>
       )}
     </section>
   );
