@@ -4,7 +4,6 @@ import { Thumbs, Navigation } from 'swiper/modules';
 import Lightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import Rotate from 'yet-another-react-lightbox/plugins/captions';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
@@ -18,7 +17,10 @@ const ProductGallery = ({ images = [] }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const slides = images.map((src) => ({ src }));
+  // Lightbox için büyük görseller
+  const slides = images.map((img) => ({
+    src: img.large || img.src,
+  }));
 
   const openLightbox = (index) => {
     setLightboxIndex(index);
@@ -41,7 +43,7 @@ const ProductGallery = ({ images = [] }) => {
             <SwiperSlide key={i}>
               <div className={styles.mainSlide} onClick={() => openLightbox(i)}>
                 <img
-                  src={img}
+                  src={img.src}
                   alt={`Görsel ${i + 1}`}
                   className={styles.mainImg}
                 />
@@ -81,7 +83,7 @@ const ProductGallery = ({ images = [] }) => {
             <SwiperSlide key={i}>
               <div className={styles.thumb}>
                 <img
-                  src={img}
+                  src={img.src}
                   alt={`Küçük görsel ${i + 1}`}
                   className={styles.thumbImg}
                 />
