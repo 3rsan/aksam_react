@@ -1,15 +1,24 @@
+import { useEffect } from 'react';
 import SidebarFilter from '../../components/SideBarFilter';
 import VehicleList from '../../components/VehicleList';
 import VehicleBrandSlider from '../../components/BrandSlider';
+import useVehicleStore from '../../../../app/store/useVehicleStore';
 
 function Home() {
+  const fetchVehicles = useVehicleStore((state) => state.fetchVehicles);
+  const fetchFilters = useVehicleStore((state) => state.fetchFilters);
+
+  useEffect(() => {
+    fetchFilters();
+    fetchVehicles();
+  }, []);
+
   return (
     <>
       <VehicleBrandSlider />
-
       <div className="container mx-auto px-4 py-6 flex gap-6">
         <div className="w-72 flex-shrink-0 hidden lg:block">
-          <SidebarFilter onFilter={(filters) => console.log(filters)} />
+          <SidebarFilter />
         </div>
         <div className="flex-1 min-w-0">
           <VehicleList />

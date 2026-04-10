@@ -38,8 +38,8 @@ const useVehicleStore = create((set, get) => ({
     try {
       const data = await getFilters();
       set({ filters: data });
-    } catch (error) {
-      console.error('Filtreler yüklenemedi:', error);
+    } catch {
+      // Silently handle filter fetch errors
     }
   },
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, memo } from 'react';
 import VehicleCard from '../VehicleCard';
 import VehicleListToolbar from '../VehicleListToolbar';
 import useVehicleStore from '../../../../app/store/useVehicleStore';
@@ -34,23 +34,17 @@ function EmptyState() {
   );
 }
 
-export default function VehicleList() {
-  const {
-    vehicles,
-    meta,
-    loading,
-    error,
-    sortValue,
-    fetchVehicles,
-    setSortValue,
-    setPage,
-  } = useVehicleStore();
+export default memo(function VehicleList() {
+  console.log('VehicleList render');
+  const vehicles = useVehicleStore((state) => state.vehicles);
+  const meta = useVehicleStore((state) => state.meta);
+  const loading = useVehicleStore((state) => state.loading);
+  const error = useVehicleStore((state) => state.error);
+  const sortValue = useVehicleStore((state) => state.sortValue);
+  const setSortValue = useVehicleStore((state) => state.setSortValue);
+  const setPage = useVehicleStore((state) => state.setPage);
 
   const [viewMode, setViewMode] = useState('list');
-
-  useEffect(() => {
-    fetchVehicles();
-  }, [fetchVehicles]);
 
   if (error) {
     return (
@@ -84,25 +78,30 @@ export default function VehicleList() {
         ) : vehicles.length === 0 ? (
           <EmptyState />
         ) : (
-          vehicles.map((vehicle) => (
-            <VehicleCard
-              key={vehicle.id}
-              viewMode={viewMode}
-              auctionNo={vehicle.auctionNo}
-              title={vehicle.title}
-              location={vehicle.location}
-              price={vehicle.price}
-              detailUrl={vehicle.detailUrl}
-              image={vehicle.image}
-              brand={vehicle.brand}
-              year={vehicle.year}
-              mileage={vehicle.mileage}
-              transmission={vehicle.transmission}
-              fuel={vehicle.fuel}
-              document={vehicle.document}
-              damageStatus={vehicle.damageStatus}
-            />
-          ))
+          vehicles.map(
+            (vehicle) => (
+              console.log('detailUrl:', vehicle.detailUrl),
+              (
+                <VehicleCard
+                  key={vehicle.id}
+                  viewMode={viewMode}
+                  auctionNo={vehicle.auctionNo}
+                  title={vehicle.title}
+                  location={vehicle.location}
+                  price={vehicle.price}
+                  detailUrl={vehicle.detailUrl}
+                  image={vehicle.image}
+                  brand={vehicle.brand}
+                  year={vehicle.year}
+                  mileage={vehicle.mileage}
+                  transmission={vehicle.transmission}
+                  fuel={vehicle.fuel}
+                  document={vehicle.document}
+                  damageStatus={vehicle.damageStatus}
+                />
+              )
+            ),
+          )
         )}
       </div>
 
@@ -124,4 +123,4 @@ export default function VehicleList() {
       )}
     </section>
   );
-}
+});
