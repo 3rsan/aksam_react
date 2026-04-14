@@ -12,15 +12,7 @@ import {
 import './styles.scss';
 import AksamLogo from '@assets/logo.svg';
 import { useSidebar } from '@app/providers/useSidebar';
-
-// useAuth hook'unu kendi auth yapına göre değiştir
-// import { useAuth } from "@/hooks/useAuth";
-
-// Geçici mock — kendi auth sisteminle değiştir
-const useAuth = () => ({
-  isAuthenticated: false,
-  user: null, // { personel_adi: "Ali", personel_soyadi: "Veli" }
-});
+import useAuthStore from '../../store/useAuthStore';
 
 const navLinks = [
   { label: 'Anasayfa', to: '/' },
@@ -31,7 +23,9 @@ const navLinks = [
 ];
 
 export default function Header() {
-  const { isAuthenticated, user } = useAuth();
+  const isAuthenticated = useAuthStore((state) => !!state.token);
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isOpen: sidebarOpen, toggle: toggleSidebar } = useSidebar();
 
@@ -74,11 +68,15 @@ export default function Header() {
                   <button className="header__topbar-item">
                     <FaUser />
                     <span>
-                      {user.personel_adi} {user.personel_soyadi}
+                      <span>{user?.name}</span>
                     </span>
                   </button>
                   <span className="header__topbar-divider">|</span>
-                  <Link to="/cikis-yap" className="header__topbar-item">
+                  <Link
+                    to="/cikis-yap"
+                    onClick={logout}
+                    className="header__topbar-item"
+                  >
                     <FaSignOutAlt />
                     <span>Çıkış Yap</span>
                   </Link>
@@ -186,7 +184,10 @@ export default function Header() {
               <Link
                 to="/cikis-yap"
                 className="header__mobile-link"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  logout();
+                  setMobileOpen(false);
+                }}
               >
                 Çıkış Yap
               </Link>

@@ -6,7 +6,7 @@ import {
   getMe,
   register,
   forgotPassword,
-} from '../services/authService';
+} from '../../services/authService';
 
 const useAuthStore = create(
   persist(
