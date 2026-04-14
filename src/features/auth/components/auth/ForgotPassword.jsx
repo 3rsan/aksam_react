@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from '../../components/auth/AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
+import { useState } from 'react';
 import useAuthStore from '../../../../app/store/useAuthStore';
 
 const ForgotPassword = () => {
@@ -17,7 +16,9 @@ const ForgotPassword = () => {
     e.preventDefault();
     clearError();
     const result = await forgotPassword(email);
-    if (result.success) setSuccess(true);
+    if (result.success) {
+      setSuccess(true);
+    }
   };
 
   return (
@@ -55,12 +56,12 @@ const ForgotPassword = () => {
             </div>
 
             <div className="flex items-center justify-between mt-4">
-              <Link
-                to="/kayit-ol"
+              <a
+                href="/kayit-ol"
                 className="text-sm text-emerald-600 hover:text-emerald-700 transition-colors"
               >
                 Giriş Yap
-              </Link>
+              </a>
               <button
                 type="submit"
                 className={styles.submitBtn}
