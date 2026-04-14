@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
     element: <HomeLayout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'araclar', element: <HomePage /> },
       { path: 'kayit-ol', element: <LoginRegister /> },
       { path: 'cerez-politikasi', element: <CookiePolicy /> },
       { path: 'aydinlatma-metni', element: <PrivacyPolicy /> },

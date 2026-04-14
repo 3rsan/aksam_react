@@ -1,17 +1,25 @@
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import useVehicleStore from '../../../../app/store/useVehicleStore';
 import SidebarFilter from '../../components/SideBarFilter';
 import VehicleList from '../../components/VehicleList';
 import VehicleBrandSlider from '../../components/BrandSlider';
-import useVehicleStore from '../../../../app/store/useVehicleStore';
 
 function Home() {
+  const [searchParams] = useSearchParams();
   const fetchVehicles = useVehicleStore((state) => state.fetchVehicles);
   const fetchFilters = useVehicleStore((state) => state.fetchFilters);
+  const setActiveFilters = useVehicleStore((state) => state.setActiveFilters);
 
   useEffect(() => {
     fetchFilters();
-    fetchVehicles();
-  }, []);
+    const markaRefNo = searchParams.get('marka');
+    if (markaRefNo) {
+      setActiveFilters({ markaRefNo });
+    } else {
+      fetchVehicles();
+    }
+  }, [searchParams, fetchFilters, setActiveFilters, fetchVehicles]);
 
   return (
     <>

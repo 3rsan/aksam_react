@@ -66,18 +66,40 @@ function CheckList({ items, name, checked, onChange, scrollable = true }) {
 }
 
 function MarkaList({ markalar }) {
+  const activeFilters = useVehicleStore((state) => state.activeFilters);
+  const setActiveFilters = useVehicleStore((state) => state.setActiveFilters);
+  const clearFilters = useVehicleStore((state) => state.clearFilters);
+
+  const activeMarka = activeFilters?.markaRefNo
+    ? String(activeFilters.markaRefNo)
+    : null;
+
+  const handleClick = (id) => {
+    if (activeMarka === String(id)) {
+      clearFilters();
+    } else {
+      setActiveFilters({ markaRefNo: id });
+    }
+  };
+
   return (
     <ul className="sf-checklist sf-checklist--scroll">
       {markalar.map((m) => {
         const id = m.id ?? m.marka_ref_no;
         const label = m.label ?? m.marka;
         const count = m.count ?? m.arac_sayisi;
+        const isActive = activeMarka === String(id);
+
         return (
           <li key={id}>
-            <a href={`/marka/${id}/${label}`} className="sf-marka-link">
+            <button
+              type="button"
+              onClick={() => handleClick(id)}
+              className={`sf-marka-link ${isActive ? 'sf-marka-link--active' : ''}`}
+            >
               <span>{label}</span>
               <span className="sf-check__count">{count}</span>
-            </a>
+            </button>
           </li>
         );
       })}
