@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -28,6 +28,7 @@ export default function Header() {
   const logout = useAuthStore((state) => state.logout);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isOpen: sidebarOpen, toggle: toggleSidebar } = useSidebar();
+  const navigate = useNavigate();
 
   return (
     <header className="header">
@@ -72,14 +73,16 @@ export default function Header() {
                     </span>
                   </button>
                   <span className="header__topbar-divider">|</span>
-                  <Link
-                    to="/cikis-yap"
-                    onClick={logout}
+                  <button
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                    }}
                     className="header__topbar-item"
                   >
                     <FaSignOutAlt />
                     <span>Çıkış Yap</span>
-                  </Link>
+                  </button>
                 </>
               ) : (
                 <>
@@ -181,16 +184,16 @@ export default function Header() {
           ))}
           <div className="header__mobile-auth">
             {isAuthenticated ? (
-              <Link
-                to="/cikis-yap"
-                className="header__mobile-link"
+              <button
                 onClick={() => {
                   logout();
                   setMobileOpen(false);
+                  navigate('/');
                 }}
+                className="header__mobile-link"
               >
                 Çıkış Yap
-              </Link>
+              </button>
             ) : (
               <>
                 <Link

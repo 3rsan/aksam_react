@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const register = useAuthStore((state) => state.register);
-  const loading = useAuthStore((state) => state.loading);
+  const [loading, setLoading] = useState(false);
   const error = useAuthStore((state) => state.error);
   const clearError = useAuthStore((state) => state.clearError);
 
@@ -27,9 +27,14 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearError();
+    setLoading(true);
+
     const result = await register(form);
+    setLoading(false);
     if (result.success) {
-      navigate('/kayit-ol');
+      navigate('/kayit-ol', {
+        state: { success: 'Kayıt başarılı! Giriş yapabilirsiniz.' },
+      });
     }
   };
 

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styles from '../auth/AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
 import useAuthStore from '../../../../app/store/useAuthStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginForm = () => {
   const login = useAuthStore((state) => state.login);
-  const loading = useAuthStore((state) => state.loading);
+  const [loading, setLoading] = useState(false);
   const error = useAuthStore((state) => state.error);
   const clearError = useAuthStore((state) => state.clearError);
 
@@ -18,11 +18,16 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     clearError();
+    setLoading(true);
     const result = await login(email, password, remember);
+    setLoading(false);
     if (result.success) {
       navigate('/');
     }
   };
+
+  const location = useLocation();
+  const successMessage = location.state?.success;
 
   return (
     <div className="col-xl-6">
@@ -36,6 +41,12 @@ const LoginForm = () => {
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg px-4 py-3 mb-4">
               {error}
+            </div>
+          )}
+
+          {successMessage && (
+            <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-lg px-4 py-3 mb-4">
+              {successMessage}
             </div>
           )}
 
