@@ -9,6 +9,7 @@ import ContactPage from '../../features/home/pages/Contact/ContactPage';
 import ForgotPassword from '../../features/auth/pages/ForgotPassword/ForgotPassword';
 import ProductDetailPage from '../../features/home/pages/VehicleDetail/ProductDetailPage';
 import ResetPassword from '../../features/auth/pages/ResetPassword/ResetPassword';
+import VehicleRequestSuccess from '../../features/home/pages/VehicleRequestSuccess/VehicleRequestSuccess';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: 'sifremi-unuttum', element: <ForgotPassword /> },
       { path: 'detay/:id/:slug', element: <ProductDetailPage /> },
       { path: 'sifremi-sifirla/:token', element: <ResetPassword /> },
+      { path: 'arac-talep-basarili', element: <VehicleRequestSuccess /> },
     ],
   },
 ]);

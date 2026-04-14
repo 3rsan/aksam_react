@@ -19,3 +19,8 @@ export const getBrandModels = async (brandId) => {
   const response = await api.get(`/brands/${brandId}/models`);
   return response.data;
 };
+
+export const vehicleRequest = async (data) => {
+  const response = await api.post('/vehicle-request', data);
+  return response.data;
+};
