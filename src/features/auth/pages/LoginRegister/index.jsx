@@ -1,5 +1,5 @@
-import LoginForm from '../../components/auth/LoginForm';
-import RegisterForm from '../../components/auth/RegisterForm';
+import LoginForm from '../../components/LoginForm';
+import RegisterForm from '../../components/RegisterForm';
 
 function LoginRegister() {
   return (

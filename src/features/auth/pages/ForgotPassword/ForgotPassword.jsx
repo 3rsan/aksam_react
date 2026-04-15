@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../../components/auth/AuthForm.module.scss';
+import styles from '../../components/AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
 import useAuthStore from '../../../../app/store/useAuthStore';
 

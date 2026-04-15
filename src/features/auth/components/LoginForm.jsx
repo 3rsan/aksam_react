@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styles from '../auth/AuthForm.module.scss';
+import styles from './AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
-import useAuthStore from '../../../../app/store/useAuthStore';
+import useAuthStore from '../../../app/store/useAuthStore';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginForm = () => {

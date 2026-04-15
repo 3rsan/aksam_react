@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from '../../components/auth/AuthForm.module.scss';
+import styles from '../../components/AuthForm.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
 import { resetPassword } from '../../../../services/authService';
 
