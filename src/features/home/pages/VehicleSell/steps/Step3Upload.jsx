@@ -110,7 +110,7 @@ function UploadBox({
         ref={inputRef}
         type="file"
         multiple
-        accept="image/*"
+        accept="image/*,.pdf"
         className="hidden"
         onChange={(e) => onFiles([...files, ...Array.from(e.target.files)])}
         onClick={(e) => e.stopPropagation()}
@@ -128,8 +128,8 @@ export default function Step3Upload({ onNext, onBack }) {
   const handleDrop = (e, setter, setDrag) => {
     e.preventDefault();
     setDrag(false);
-    const files = Array.from(e.dataTransfer.files).filter((f) =>
-      f.type.startsWith('image/'),
+    const files = Array.from(e.dataTransfer.files).filter(
+      (f) => f.type.startsWith('image/') || f.type === 'application/pdf',
     );
     setter((prev) => [...prev, ...files]);
   };
