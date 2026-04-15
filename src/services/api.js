@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
+import { getDeviceInfo } from "../shared/utils/deviceDetect";
 
-const isDev = import.meta.env.VITE_APP_ENV === 'development';
+const isDev = import.meta.env.VITE_APP_ENV === "development";
 
 const config = {
   development: {
@@ -21,8 +22,8 @@ const api = axios.create({
   baseURL: activeConfig.baseURL,
   timeout: activeConfig.timeout,
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });
 
@@ -58,10 +59,15 @@ const api = axios.create({
 
 // Token varsa her isteğe ekle
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
+  // Channel bilgisi
+  const { channel } = getDeviceInfo();
+  config.headers["X-Channel"] = channel;
+
   return config;
 });
 

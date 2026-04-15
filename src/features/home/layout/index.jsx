@@ -1,12 +1,13 @@
-import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
-import Header from '../../../app/layout/header';
-import OffcanvasSidebar from '../components/Sidebar';
-import Footer from '../../../app/layout/footer/Footer';
+import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
+import Header from "../../../app/layout/header";
+import OffcanvasSidebar from "../components/Sidebar";
+import Footer from "../../../app/layout/footer/Footer";
+import GoogleAnalyticsProvider from "../../../app/providers/GoogleAnalyticsProvider";
 
 export default function HomeLayout() {
   return (
-    <>
+    <GoogleAnalyticsProvider>
       <Header />
       <OffcanvasSidebar />
       <Suspense fallback={<div>Loading...</div>}>
@@ -15,6 +16,6 @@ export default function HomeLayout() {
         </main>
       </Suspense>
       <Footer />
-    </>
+    </GoogleAnalyticsProvider>
   );
 }
