@@ -10,6 +10,7 @@ import ForgotPassword from '../../features/auth/pages/ForgotPassword/ForgotPassw
 import ProductDetailPage from '../../features/home/pages/VehicleDetail/ProductDetailPage';
 import ResetPassword from '../../features/auth/pages/ResetPassword/ResetPassword';
 import VehicleRequestSuccess from '../../features/home/pages/VehicleRequestSuccess/VehicleRequestSuccess';
+import VehicleSellPage from '../../features/home/pages/VehicleSell/VehicleSellPage';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: 'detay/:id/:slug', element: <ProductDetailPage /> },
       { path: 'sifremi-sifirla/:token', element: <ResetPassword /> },
       { path: 'arac-talep-basarili', element: <VehicleRequestSuccess /> },
+      { path: 'arac-ekle', element: <VehicleSellPage /> },
     ],
   },
 ]);
