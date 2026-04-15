@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import bg4 from '../../../../../assets/images/aksam-web-site-tasarim-template-4.png';
 
 const ILLER = [
   'Adana',
@@ -134,10 +135,9 @@ export default function Step4Contract({ onNext, onBack }) {
 
   return (
     <div
-      className="min-h-screen flex items-center"
+      className="min-h-screen flex items-center justify-center"
       style={{
-        backgroundImage:
-          "url('/assets/images/aksam-web-site-tasarim-template-4.png')",
+        backgroundImage: `url(${bg4})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundPosition: 'center',

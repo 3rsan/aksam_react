@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../VehicleSellPage.module.scss';
+import bg2 from '../../../../../assets/images/aksam-web-site-tasarim-template-2.png';
 
 const currentYear = new Date().getFullYear();
 const YILLAR = Array.from(
@@ -36,10 +37,9 @@ export default function Step2Details({ formData, onNext, onBack }) {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-start"
+      className="min-h-screen flex items-center justify-center"
       style={{
-        backgroundImage:
-          "url('/assets/images/aksam-web-site-tasarim-template-2.png')",
+        backgroundImage: `url(${bg2})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundPosition: 'center',

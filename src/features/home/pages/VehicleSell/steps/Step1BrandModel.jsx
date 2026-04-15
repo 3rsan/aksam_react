@@ -4,6 +4,7 @@ import {
   getBrandModels,
 } from '../../../../../services/vehicleService';
 import styles from '../VehicleSellPage.module.scss';
+import bg1 from '../../../../../assets/images/aksam-web-site-tasarim-template-1.png';
 
 export default function Step1BrandModel({ onNext }) {
   const [markalar, setMarkalar] = useState([]);
@@ -28,7 +29,10 @@ export default function Step1BrandModel({ onNext }) {
   };
 
   return (
-    <div className={styles.step1}>
+    <div
+      className={styles.step1}
+      style={{ backgroundImage: `url(${bg1})`, backgroundSize: 'contain' }}
+    >
       <div className={styles.step1__content}>
         <h1 className={styles.step1__title}>
           Hasarlı Aracınızı <br />

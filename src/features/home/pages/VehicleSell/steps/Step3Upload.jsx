@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import bg3 from '../../../../../assets/images/aksam-web-site-tasarim-template-3.png';
 
 const UploadIcon = () => (
   <svg
@@ -142,8 +143,7 @@ export default function Step3Upload({ onNext, onBack }) {
     <div
       className="min-h-screen flex items-center"
       style={{
-        backgroundImage:
-          "url('/assets/images/aksam-web-site-tasarim-template-3.png')",
+        backgroundImage: `url(${bg3})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundPosition: 'center',
