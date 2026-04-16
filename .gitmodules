@@ -1,0 +1,3 @@
+[submodule "kubernetes"]
+	path = kubernetes
+	url = https://aksamoto:glpat-x3dsTK84Cs0aBqSQFVmMl286MQp1Om4H.01.0w00tvfv8@git.telligrup.com/mono1/kubernetes.git
