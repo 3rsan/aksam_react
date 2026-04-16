@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Step5Success() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10">
       <div className="text-center max-w-2xl">
-        <div className="mb-10">
+        <div className="mb-10 flex items-center justify-center">
           <svg
             width="200"
             height="200"
