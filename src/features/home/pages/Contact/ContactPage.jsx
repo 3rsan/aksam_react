@@ -1,57 +1,57 @@
-import { useState } from 'react';
-import styles from './ContactPage.module.scss';
+import { useState } from "react";
+import styles from "./ContactPage.module.scss";
 import {
   FaWhatsapp,
   FaFacebookF,
   FaYoutube,
   FaLinkedinIn,
-} from 'react-icons/fa';
-import { MdOutlineEmail } from 'react-icons/md';
-import VehicleSlider from './sections/VehicleSlider';
-import { sendContact } from '../../../../services/contactService';
+} from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
+import VehicleSlider from "./sections/VehicleSlider";
+import { sendContact } from "../../../../services/contactService";
 
 const locations = [
   {
-    label: 'Merkez Adres',
+    label: "Merkez Adres",
     value:
-      'Maslak Mahallesi Sümer Sokak No: 3 Ayazağa Ticaret Merkezi B Blok Kat: 9 Sarıyer/İstanbul',
+      "Maslak Mahallesi Sümer Sokak No: 3 Ayazağa Ticaret Merkezi B Blok Kat: 9 Sarıyer/İstanbul",
   },
   {
-    label: 'Maslak Garaj',
+    label: "Maslak Garaj",
     value:
-      'Maslak Mahallesi Atatürk Oto Sanayi Sit. 2.Kısım 9.Sokak No:5 Sarıyer/İstanbul',
+      "Maslak Mahallesi Atatürk Oto Sanayi Sit. 2.Kısım 9.Sokak No:5 Sarıyer/İstanbul",
   },
   {
-    label: 'Sancaktepe Garaj',
-    value: 'Eyüp Sultan Mahallesi Sekmen Cad. No: 10 Sancaktepe/İstanbul',
+    label: "Sancaktepe Garaj",
+    value: "Eyüp Sultan Mahallesi Sekmen Cad. No: 10 Sancaktepe/İstanbul",
   },
 ];
 
 const socials = [
   {
     icon: <FaFacebookF size={16} />,
-    href: 'https://www.facebook.com/aksamoto.com.tr',
-    label: 'Facebook',
+    href: "https://www.facebook.com/aksamoto.com.tr",
+    label: "Facebook",
   },
   {
     icon: <FaYoutube size={16} />,
-    href: 'https://www.youtube.com/@AksamOtomotiv-y9v',
-    label: 'YouTube',
+    href: "https://www.youtube.com/@AksamOtomotiv-y9v",
+    label: "YouTube",
   },
   {
     icon: <FaLinkedinIn size={16} />,
-    href: 'https://www.linkedin.com/company/aksam-otomotiv/',
-    label: 'LinkedIn',
+    href: "https://www.linkedin.com/company/aksam-otomotiv/",
+    label: "LinkedIn",
   },
 ];
 
 const ContactPage = () => {
   const [form, setForm] = useState({
-    name: '',
-    surname: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    surname: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -68,11 +68,11 @@ const ContactPage = () => {
     try {
       await sendContact(form);
       setSuccess(true);
-      setForm({ name: '', surname: '', email: '', phone: '', message: '' });
+      setForm({ name: "", surname: "", email: "", phone: "", message: "" });
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          'Bir hata oluştu. Lütfen tekrar deneyin.',
+          "Bir hata oluştu. Lütfen tekrar deneyin.",
       );
     } finally {
       setLoading(false);
@@ -96,7 +96,7 @@ const ContactPage = () => {
               </p>
 
               {success && (
-                <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-lg px-4 py-3 mb-5">
+                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3 mb-5">
                   Mesajınız başarıyla gönderildi. En kısa sürede size dönüş
                   yapacağız.
                 </div>
@@ -174,7 +174,7 @@ const ContactPage = () => {
                     className={styles.submitBtn}
                     disabled={loading}
                   >
-                    {loading ? 'Gönderiliyor...' : 'Gönder'}
+                    {loading ? "Gönderiliyor..." : "Gönder"}
                     {!loading && (
                       <svg
                         width="16"
@@ -203,7 +203,7 @@ const ContactPage = () => {
                 <div className="flex flex-col gap-4">
                   {locations.map(({ label, value }) => (
                     <div key={label}>
-                      <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-1">
+                      <p className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
                         {label}
                       </p>
                       <p className="text-sm text-slate-500 leading-relaxed">

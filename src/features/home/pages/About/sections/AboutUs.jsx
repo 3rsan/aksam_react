@@ -3,7 +3,7 @@ const AboutUs = () => (
     id="Bize-Dair"
     className="bg-white rounded-xl border border-slate-200 p-8"
   >
-    <h5 className="text-xl font-bold text-slate-900 pb-3 mb-5 border-b-2 border-emerald-500 inline-block">
+    <h5 className="text-xl font-bold text-slate-900 pb-3 mb-5 border-b-2 border-red-500 inline-block">
       Bize Dair
     </h5>
     <div className="flex flex-col gap-4 text-sm text-slate-500 leading-relaxed">
@@ -15,15 +15,15 @@ const AboutUs = () => (
       </p>
       <p>
         Araçların toplu alımını gerçekleştirip kendi satış noktalarında direkt
-        tüketici ile buluşturularak pazarlamasını yapan{' '}
+        tüketici ile buluşturularak pazarlamasını yapan{" "}
         <strong className="text-slate-700">Aksam Otomotiv</strong>, ihale ile
-        satışa sunumunu sağlayan{' '}
+        satışa sunumunu sağlayan{" "}
         <strong className="text-slate-700">Autogong</strong>, ömrünü tamamlamış
-        araçların geri dönüşümünü gerçekleştiren{' '}
-        <strong className="text-slate-700">Ekosistem Geri Dönüşüm</strong> ve{' '}
+        araçların geri dönüşümünü gerçekleştiren{" "}
+        <strong className="text-slate-700">Ekosistem Geri Dönüşüm</strong> ve{" "}
         <strong className="text-slate-700">Ekoparça</strong>, tüm operasyonel
-        süreçleri yöneten{' '}
-        <strong className="text-slate-700">HYS Hasar Yönetim Sistemi</strong>{' '}
+        süreçleri yöneten{" "}
+        <strong className="text-slate-700">HYS Hasar Yönetim Sistemi</strong>{" "}
         ile otomotiv ve sigorta sektöründe 360° hizmet sunulmaktadır.
       </p>
       <p>

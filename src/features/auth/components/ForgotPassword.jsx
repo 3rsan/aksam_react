@@ -1,7 +1,7 @@
-import styles from '../../components/auth/AuthForm.module.scss';
-import { FaArrowRight } from 'react-icons/fa';
-import { useState } from 'react';
-import useAuthStore from '../../../../app/store/useAuthStore';
+import styles from "../../components/auth/AuthForm.module.scss";
+import { FaArrowRight } from "react-icons/fa";
+import { useState } from "react";
+import useAuthStore from "../../../../app/store/useAuthStore";
 
 const ForgotPassword = () => {
   const forgotPassword = useAuthStore((state) => state.forgotPassword);
@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const error = useAuthStore((state) => state.error);
   const clearError = useAuthStore((state) => state.clearError);
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -58,7 +58,7 @@ const ForgotPassword = () => {
             <div className="flex items-center justify-between mt-4">
               <a
                 href="/kayit-ol"
-                className="text-sm text-emerald-600 hover:text-emerald-700 transition-colors"
+                className="text-sm text-red-600 hover:text-red-700 transition-colors"
               >
                 Giriş Yap
               </a>
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
                 className={styles.submitBtn}
                 disabled={loading}
               >
-                {loading ? 'Gönderiliyor...' : 'Şifremi Sıfırla'}
+                {loading ? "Gönderiliyor..." : "Şifremi Sıfırla"}
                 {!loading && (
                   <span className={styles.icon}>
                     <FaArrowRight />

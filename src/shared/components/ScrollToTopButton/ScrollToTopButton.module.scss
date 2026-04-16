@@ -5,14 +5,14 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #1d9e75;
+  background: #ca2129;
   color: #fff;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(29, 158, 117, 0.35);
+  box-shadow: 0 4px 12px rgba(202, 33, 41, 0.35);
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
@@ -23,7 +23,7 @@
   z-index: 999;
 
   &:hover {
-    background: #0f6e56;
+    background: #9f1e24;
   }
 
   &:active {

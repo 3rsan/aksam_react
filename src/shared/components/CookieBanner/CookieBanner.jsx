@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const CookieBanner = () => {
   const [visible, setVisible] = useState(() => {
-    const accepted = localStorage.getItem('cookie_accepted');
+    const accepted = localStorage.getItem("cookie_accepted");
     return !accepted;
   });
 
   const handleAccept = () => {
-    localStorage.setItem('cookie_accepted', 'true');
+    localStorage.setItem("cookie_accepted", "true");
     setVisible(false);
   };
 
   const handleReject = () => {
-    localStorage.setItem('cookie_accepted', 'false');
+    localStorage.setItem("cookie_accepted", "false");
     setVisible(false);
   };
 
@@ -22,10 +22,10 @@ const CookieBanner = () => {
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-slate-700 px-4 py-4">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-slate-300 leading-relaxed">
-          Web sitemizde daha iyi bir deneyim sunmak için çerezler kullanıyoruz.{' '}
+          Web sitemizde daha iyi bir deneyim sunmak için çerezler kullanıyoruz.{" "}
           <a
             href="/cerez-politikasi"
-            className="text-emerald-400 hover:text-emerald-300 underline transition-colors"
+            className="text-red-600 hover:text-red-500 underline transition-colors"
           >
             Çerez Politikası
           </a>
@@ -40,7 +40,7 @@ const CookieBanner = () => {
           </button>
           <button
             onClick={handleAccept}
-            className="px-4 py-2 text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
+            className="px-4 py-2 text-sm font-semibold bg-red-600 hover:bg-red-500 text-white rounded-lg transition-colors"
           >
             Kabul Et
           </button>
