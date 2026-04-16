@@ -1,88 +1,88 @@
-import { useState, useRef, useEffect } from 'react';
-import bg4 from '../../../../../assets/images/aksam-web-site-tasarim-template-4.png';
+import { useState, useRef, useEffect } from "react";
+import bg4 from "../../../../../assets/images/aksam-web-site-tasarim-template-4.png";
 
 const ILLER = [
-  'Adana',
-  'Adıyaman',
-  'Afyonkarahisar',
-  'Ağrı',
-  'Amasya',
-  'Ankara',
-  'Antalya',
-  'Artvin',
-  'Aydın',
-  'Balıkesir',
-  'Bilecik',
-  'Bingöl',
-  'Bitlis',
-  'Bolu',
-  'Burdur',
-  'Bursa',
-  'Çanakkale',
-  'Çankırı',
-  'Çorum',
-  'Denizli',
-  'Diyarbakır',
-  'Edirne',
-  'Elazığ',
-  'Erzincan',
-  'Erzurum',
-  'Eskişehir',
-  'Gaziantep',
-  'Giresun',
-  'Gümüşhane',
-  'Hakkari',
-  'Hatay',
-  'Isparta',
-  'Mersin',
-  'İstanbul',
-  'İzmir',
-  'Kars',
-  'Kastamonu',
-  'Kayseri',
-  'Kırklareli',
-  'Kırşehir',
-  'Kocaeli',
-  'Konya',
-  'Kütahya',
-  'Malatya',
-  'Manisa',
-  'Kahramanmaraş',
-  'Mardin',
-  'Muğla',
-  'Muş',
-  'Nevşehir',
-  'Niğde',
-  'Ordu',
-  'Rize',
-  'Sakarya',
-  'Samsun',
-  'Siirt',
-  'Sinop',
-  'Sivas',
-  'Tekirdağ',
-  'Tokat',
-  'Trabzon',
-  'Tunceli',
-  'Şanlıurfa',
-  'Uşak',
-  'Van',
-  'Yozgat',
-  'Zonguldak',
-  'Aksaray',
-  'Bayburt',
-  'Karaman',
-  'Kırıkkale',
-  'Batman',
-  'Şırnak',
-  'Bartın',
-  'Ardahan',
-  'Iğdır',
-  'Yalova',
-  'Karabük',
-  'Kilis',
-  'Osmaniye',
-  'Düzce',
+  "Adana",
+  "Adıyaman",
+  "Afyonkarahisar",
+  "Ağrı",
+  "Amasya",
+  "Ankara",
+  "Antalya",
+  "Artvin",
+  "Aydın",
+  "Balıkesir",
+  "Bilecik",
+  "Bingöl",
+  "Bitlis",
+  "Bolu",
+  "Burdur",
+  "Bursa",
+  "Çanakkale",
+  "Çankırı",
+  "Çorum",
+  "Denizli",
+  "Diyarbakır",
+  "Edirne",
+  "Elazığ",
+  "Erzincan",
+  "Erzurum",
+  "Eskişehir",
+  "Gaziantep",
+  "Giresun",
+  "Gümüşhane",
+  "Hakkari",
+  "Hatay",
+  "Isparta",
+  "Mersin",
+  "İstanbul",
+  "İzmir",
+  "Kars",
+  "Kastamonu",
+  "Kayseri",
+  "Kırklareli",
+  "Kırşehir",
+  "Kocaeli",
+  "Konya",
+  "Kütahya",
+  "Malatya",
+  "Manisa",
+  "Kahramanmaraş",
+  "Mardin",
+  "Muğla",
+  "Muş",
+  "Nevşehir",
+  "Niğde",
+  "Ordu",
+  "Rize",
+  "Sakarya",
+  "Samsun",
+  "Siirt",
+  "Sinop",
+  "Sivas",
+  "Tekirdağ",
+  "Tokat",
+  "Trabzon",
+  "Tunceli",
+  "Şanlıurfa",
+  "Uşak",
+  "Van",
+  "Yozgat",
+  "Zonguldak",
+  "Aksaray",
+  "Bayburt",
+  "Karaman",
+  "Kırıkkale",
+  "Batman",
+  "Şırnak",
+  "Bartın",
+  "Ardahan",
+  "Iğdır",
+  "Yalova",
+  "Karabük",
+  "Kilis",
+  "Osmaniye",
+  "Düzce",
 ];
 
 const SOZLESME_METNI = `6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, Aksam Otomotiv İç ve Dış Ticaret A.Ş. ("Şirket") tarafından veri sorumlusu sıfatıyla işlenecek kişisel verilerinize ilişkin aydınlatma yükümlülüğümüz çerçevesinde bilgi vermek istiyoruz.
@@ -97,12 +97,12 @@ Formu doldurarak yukarıdaki aydınlatma metnini okuduğunuzu ve kişisel verile
 
 export default function Step4Contract({ onNext, onBack }) {
   const [form, setForm] = useState({
-    name: '',
-    surname: '',
-    phone: '',
-    email: '',
-    il: '',
-    ilce: '',
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    il: "",
+    ilce: "",
   });
   const [scrolled, setScrolled] = useState(false);
   const termsRef = useRef(null);
@@ -120,8 +120,8 @@ export default function Step4Contract({ onNext, onBack }) {
 
   useEffect(() => {
     const el = termsRef.current;
-    if (el) el.addEventListener('scroll', handleScroll);
-    return () => el?.removeEventListener('scroll', handleScroll);
+    if (el) el.addEventListener("scroll", handleScroll);
+    return () => el?.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleSubmit = (e) => {
@@ -138,12 +138,12 @@ export default function Step4Contract({ onNext, onBack }) {
       className="min-h-screen flex items-center justify-center"
       style={{
         backgroundImage: `url(${bg4})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
       }}
     >
-      <div className="w-full max-w-5xl px-4 relative left-[12%] lg:left-[9%] xl:left-[12%]">
+      <div className="w-full max-w-5xl mx-auto px-4 lg:ml-[12%] lg:mx-0">
         {/* Banner */}
         <div className="bg-red-600 text-white text-center px-8 py-5 rounded-2xl mb-8 shadow text-base leading-relaxed">
           İletişim bilgileriniz ile aracın bulunduğu il ve ilçe bilgilerini
@@ -236,7 +236,7 @@ export default function Step4Contract({ onNext, onBack }) {
               ref={termsRef}
               className="bg-gray-50 border border-gray-200 rounded-lg p-6 max-h-60 overflow-y-auto mb-3 text-sm text-gray-700 leading-relaxed [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-red-600 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-track]:bg-black/5 [&::-webkit-scrollbar-track]:rounded"
             >
-              {SOZLESME_METNI.split('\n\n').map((p, i) => (
+              {SOZLESME_METNI.split("\n\n").map((p, i) => (
                 <p key={i} className="mb-4 last:mb-0">
                   {p}
                 </p>
@@ -268,8 +268,8 @@ export default function Step4Contract({ onNext, onBack }) {
               disabled={!scrolled}
               className={`px-20 py-4 rounded-xl text-lg font-semibold shadow transition ${
                 scrolled
-                  ? 'bg-red-600 text-white hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer'
-                  : 'bg-gray-400 text-white cursor-not-allowed opacity-60'
+                  ? "bg-red-600 text-white hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  : "bg-gray-400 text-white cursor-not-allowed opacity-60"
               }`}
             >
               Devam Et

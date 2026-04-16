@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import styles from '../VehicleSellPage.module.scss';
-import bg2 from '../../../../../assets/images/aksam-web-site-tasarim-template-2.png';
+import { useState } from "react";
+import styles from "../VehicleSellPage.module.scss";
+import bg2 from "../../../../../assets/images/aksam-web-site-tasarim-template-2.png";
 
 const currentYear = new Date().getFullYear();
 const YILLAR = Array.from(
@@ -10,16 +10,16 @@ const YILLAR = Array.from(
 
 export default function Step2Details({ formData, onNext, onBack }) {
   const [form, setForm] = useState({
-    modelYear: '',
-    motorType: '',
-    gearType: '',
-    fuelType: '',
-    registrationStatus: '',
-    km: '',
-    motorNo: '',
-    chasisNo: '',
-    price: '',
-    damageDescription: '',
+    modelYear: "",
+    motorType: "",
+    gearType: "",
+    fuelType: "",
+    registrationStatus: "",
+    km: "",
+    motorNo: "",
+    chasisNo: "",
+    price: "",
+    damageDescription: "",
     ...formData,
   });
 
@@ -40,12 +40,12 @@ export default function Step2Details({ formData, onNext, onBack }) {
       className="min-h-screen flex items-center justify-center"
       style={{
         backgroundImage: `url(${bg2})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
       }}
     >
-      <div className="w-full max-w-5xl ml-[13%] mt-[4%] px-4">
+      <div className="w-full max-w-5xl mx-auto mt-[4%] px-4 lg:ml-[13%] lg:mx-0">
         {/* Banner */}
         <div className="bg-[#ca2129] text-white text-center px-10 py-5 rounded-2xl text-lg font-semibold mb-10 shadow-lg">
           Aracın teknik özellikleri ve tanımlayıcı bilgilerine ait alanları
@@ -200,17 +200,17 @@ export default function Step2Details({ formData, onNext, onBack }) {
           />
 
           {/* Butonlar */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pb-6 md:pb-0">
             <button
               type="button"
               onClick={onBack}
-              className="px-8 py-4 border-2 border-[#ca2129] text-[#ca2129] rounded-xl text-lg font-semibold hover:bg-[#ca2129] hover:text-white transition"
+              className="px-5 py-3 md:px-8 md:py-4 border-2 border-[#ca2129] text-[#ca2129] rounded-xl text-base md:text-lg font-semibold hover:bg-[#ca2129] hover:text-white transition"
             >
               Geri
             </button>
             <button
               type="submit"
-              className="px-20 py-4 bg-[#ca2129] text-white rounded-xl text-lg font-semibold shadow-lg hover:bg-[#d62839] hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 transition"
+              className="px-10 py-3 md:px-20 md:py-4 bg-[#ca2129] text-white rounded-xl text-base md:text-lg font-semibold shadow-lg hover:bg-[#d62839] hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 transition"
             >
               Devam Et
             </button>

@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import bg3 from '../../../../../assets/images/aksam-web-site-tasarim-template-3.png';
+import { useState, useRef } from "react";
+import bg3 from "../../../../../assets/images/aksam-web-site-tasarim-template-3.png";
 
 const UploadIcon = () => (
   <svg
@@ -54,10 +54,10 @@ function UploadBox({
       onDragLeave={onDragLeave}
       onDrop={onDrop}
       onClick={() => inputRef.current?.click()}
-      className={`bg-white border-2 border-dashed rounded-xl p-12 flex flex-col items-center justify-center text-center min-h-96 cursor-pointer transition-all ${
+      className={`bg-white border-2 border-dashed rounded-xl p-6 md:p-12 flex flex-col items-center justify-center text-center min-h-48 md:min-h-96 cursor-pointer transition-all ${
         dragOver
-          ? 'border-red-600 bg-red-50 border-solid'
-          : 'border-gray-300 hover:border-red-600 hover:bg-red-50'
+          ? "border-red-600 bg-red-50 border-solid"
+          : "border-gray-300 hover:border-red-600 hover:bg-red-50"
       }`}
     >
       <div className="mb-6">
@@ -129,13 +129,14 @@ export default function Step3Upload({ onNext, onBack }) {
     e.preventDefault();
     setDrag(false);
     const files = Array.from(e.dataTransfer.files).filter(
-      (f) => f.type.startsWith('image/') || f.type === 'application/pdf',
+      (f) => f.type.startsWith("image/") || f.type === "application/pdf",
     );
     setter((prev) => [...prev, ...files]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (vehicleFiles.length === 0 || licenseFiles.length === 0) return;
     onNext({ vehicleFiles, licenseFiles });
   };
 
@@ -144,12 +145,12 @@ export default function Step3Upload({ onNext, onBack }) {
       className="min-h-screen flex items-center"
       style={{
         backgroundImage: `url(${bg3})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
       }}
     >
-      <div className="w-full max-w-5xl mx-auto px-4 relative left-[3%]">
+      <div className="w-full max-w-5xl mx-auto px-4 relative left-0 lg:left-[3%]">
         {/* Banner */}
         <div className="bg-red-600 text-white px-8 py-6 rounded-2xl mb-10 shadow text-center text-base leading-relaxed">
           Aracın iç, dış ve hasarlı bölgelerini net şekilde gösteren detaylı
@@ -186,17 +187,22 @@ export default function Step3Upload({ onNext, onBack }) {
             />
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pb-6 md:pb-0">
             <button
               type="button"
               onClick={onBack}
-              className="px-8 py-4 border-2 border-red-600 text-red-600 rounded-xl text-lg font-semibold hover:bg-red-600 hover:text-white transition"
+              className="px-5 py-3 md:px-8 md:py-4 border-2 border-red-600 text-red-600 rounded-xl text-base md:text-lg font-semibold hover:bg-red-600 hover:text-white transition"
             >
               Geri
             </button>
             <button
               type="submit"
-              className="px-20 py-4 bg-red-600 text-white rounded-xl text-lg font-semibold shadow-lg hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0 transition"
+              disabled={vehicleFiles.length === 0 || licenseFiles.length === 0}
+              className={`px-10 py-3 md:px-20 md:py-4 rounded-xl text-base md:text-lg font-semibold shadow-lg transition ${
+                vehicleFiles.length === 0 || licenseFiles.length === 0
+                  ? "bg-gray-400 text-white cursor-not-allowed opacity-60"
+                  : "bg-red-600 text-white hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              }`}
             >
               Devam Et
             </button>
