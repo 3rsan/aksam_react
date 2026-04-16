@@ -374,3 +374,26 @@ $radius: 4px;
     background: #f0fdf9;
   }
 }
+
+.sf-marka-link {
+  .sf-check__count {
+    background-color: transparent;
+    color: var(--sf-muted);
+    border: 1px solid var(--sf-border);
+    font-weight: 500;
+    font-size: 0.68rem;
+    padding: 1px 7px;
+    border-radius: 20px;
+    min-width: 22px;
+  }
+
+  &:hover .sf-check__count {
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &--active .sf-check__count {
+    border-color: #1d9e75;
+    color: #1d9e75;
+  }
+}
