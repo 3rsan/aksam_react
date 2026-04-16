@@ -1,0 +1,17 @@
+stages:
+    - deploy
+variables:
+  TAGS:  telligrup-test-rke2
+  TAGS_PROD_DC1:  telligrup-prod-dc1-rke2
+  TAGS_PROD_DC2:  telligrup-prod-dc2-rke2
+  DOCKER_FILE: Dockerfile
+  NAMESPACE: aksamoto
+  DEPLOYMENT: aksamoto-demo
+
+include:
+  - project: 'mono1/pipeline'
+    ref: 'master'
+    file: 'deploy.yml'
+  - project: 'mono1/pipeline'
+    ref: 'master'
+    file: 'deploy-prod.yml'
